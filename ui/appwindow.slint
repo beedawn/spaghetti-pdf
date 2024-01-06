@@ -1,10 +1,11 @@
 import { Button, VerticalBox,LineEdit } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
-    height:300px;
+    height:200px;
     width:500px;
     in-out property<int> counter: 42;
     in-out property<string> url: "";
+    in-out property<string> status:"";
     callback request-increase-value();
     callback submit-url(string);
     callback open-file();
@@ -14,12 +15,19 @@ export component AppWindow inherits Window {
         //     text: "Counter: \{root.counter}";
         // }
 
-        input := LineEdit {
-           placeholder-text:"Enter filepath";
+        // input := LineEdit {
+        //    placeholder-text:"Enter filepath";
+        // }
+
+        //url from main.rs/rust
+        Text{text:"Url from rust: \{root.url}";}
+        status := Text{
+            text:"\{root.status}";
+
         }
         Button {
             height:50px;
-            text: "open file";
+            text: "Open file...";
             clicked => {
                 //  root.submit-url(input.text);
                 // call here to rusty file dialog form main.rs
@@ -27,14 +35,14 @@ export component AppWindow inherits Window {
             }
 	
         }
-     Button {
-            height:50px;
-            text: "submit url";
-            clicked => {
-                 root.submit-url(input.text);
-            }
+    //  Button {
+    //         height:50px;
+    //         text: "Convert";
+    //         clicked => {
+    //            //  root.submit-url(input.text);
+    //         }
 	
-        }
+    //     }
 
 
 
@@ -50,9 +58,9 @@ export component AppWindow inherits Window {
 
 
 
-	Text{text:input.text;}
+	// Text{text:input.text;}
 
-	Text{text:"Url from rust: \{root.url}";}
+	
       
     }
 }
