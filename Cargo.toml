@@ -1,0 +1,15 @@
+[package]
+name = "spaghetti-pdf"
+version = "0.1.0"
+authors = ["bee"]
+edition = "2021"
+build = "build.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rfd = "0.12.1"
+slint = "1.0"
+
+[build-dependencies]
+slint-build = "1.0"
