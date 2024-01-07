@@ -32,7 +32,7 @@ fn main() -> Result<(), slint::PlatformError> {
         if let Some(ref file)= files{
         let extracted_txt = extract_text(file.clone()).expect("Error");
          extracted_txt_vec.push(extracted_txt.clone());
-        //  println!("{:?}",extracted_txt_vec);
+          println!("{:?}",extracted_txt_vec);
         // println!("************** {} ***********",&file.display());
        }
     //    println!("{:?}",extracted_txt_vec);
@@ -45,12 +45,16 @@ fn main() -> Result<(), slint::PlatformError> {
     .set_file_name("out.txt")
     .save_file();
     // println!("{:?}",out_file);
-
+    let mut tmp = String::new();
 for line in extracted_txt_vec{
-    fs::write(out_file.clone().unwrap(), line).expect("Unable to write file");
-    
+   
+    // fs::write(out_file.clone().unwrap(), line.clone()).expect("Unable to write file");
+    println!("{}",line);
+    tmp.push_str(&line.as_str());
+   
 };
 
+fs::write(out_file.clone().unwrap(), tmp);
 ui.set_status("Done".into());
     });
     ui.run()
