@@ -4,11 +4,11 @@ use rfd::FileDialog;
 use pdf_extract::extract_text;
 fn main() -> Result<(), slint::PlatformError> {
     let ui = AppWindow::new()?;
-    let ui_handle = ui.as_weak();
-    ui.on_request_increase_value(move || {
-        let ui = ui_handle.unwrap();
-        ui.set_counter(ui.get_counter() + 1);
-    });
+    // let ui_handle = ui.as_weak();
+    // ui.on_request_increase_value(move || {
+    //     let ui = ui_handle.unwrap();
+    //      ui.set_counter(ui.get_counter() + 1);
+    // });
     // let ui_handle = ui.as_weak();
     // ui.on_submit_url(move |url| {
     //    let ui: AppWindow = ui_handle.unwrap();
@@ -28,11 +28,11 @@ fn main() -> Result<(), slint::PlatformError> {
         ui.set_status("Loading...".into());
 
         ui.set_url(files.clone().unwrap().display().to_string().into());
-        let mut extracted_txt_vec = Vec::new();
+        let mut extracted_txt_string = String::new();
         if let Some(ref file)= files{
         let extracted_txt = extract_text(file.clone()).expect("Error");
-         extracted_txt_vec.push(extracted_txt.clone());
-          println!("{:?}",extracted_txt_vec);
+         extracted_txt_string.push_str(&extracted_txt.clone().as_str());
+        //   println!("{:?}",extracted_txt_vec);
         // println!("************** {} ***********",&file.display());
        }
     //    println!("{:?}",extracted_txt_vec);
@@ -45,16 +45,16 @@ fn main() -> Result<(), slint::PlatformError> {
     .set_file_name("out.txt")
     .save_file();
     // println!("{:?}",out_file);
-    let mut tmp = String::new();
-for line in extracted_txt_vec{
+    // let mut tmp = String::new();
+// for line in extracted_txt_vec{
    
-    // fs::write(out_file.clone().unwrap(), line.clone()).expect("Unable to write file");
-    println!("{}",line);
-    tmp.push_str(&line.as_str());
+//     // fs::write(out_file.clone().unwrap(), line.clone()).expect("Unable to write file");
+//     // println!("{}",line);
+//     tmp.push_str(&line.as_str());
    
-};
+// };
 
-fs::write(out_file.clone().unwrap(), tmp);
+let _ =fs::write(out_file.clone().unwrap(), extracted_txt_string);
 ui.set_status("Done".into());
     });
     ui.run()
