@@ -1,25 +1,16 @@
 import { Button, VerticalBox,LineEdit } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
-    title:"spaghetti-pdf";
+    title:"pdf-to-txt_gui";
     height:150px;
     width:300px;
-    // in-out property<int> counter: 42;
+
     in-out property<string> url: "";
     in-out property<string> status:"";
-    // callback request-increase-value();
     callback submit-url(string);
     callback open-file();
+
     VerticalBox {
-        
-        // Text {
-        //     text: "Counter: \{root.counter}";
-        // }
-
-        // input := LineEdit {
-        //    placeholder-text:"Enter filepath";
-        // }
-
         //url from main.rs/rust
         Text{text:"file \{root.url}";}
          status := Text{
@@ -34,34 +25,6 @@ export component AppWindow inherits Window {
                 // call here to rusty file dialog form main.rs
                 root.open_file();
             }
-	
-        }
-    //  Button {
-    //         height:50px;
-    //         text: "Convert";
-    //         clicked => {
-    //            //  root.submit-url(input.text);
-    //         }
-	
-    //     }
-
-
-
-        // Button {
-        //     height:50px;
-        //     text: "Increase value";
-        //     clicked => {
-        //         root.request-increase-value();
-        //     }
-	
-        // }
-
-
-
-
-	// Text{text:input.text;}
-
-	
-      
+        }  
     }
 }
