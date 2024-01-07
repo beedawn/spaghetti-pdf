@@ -1,35 +1,20 @@
 import { Button, VerticalBox,LineEdit } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
-<<<<<<< HEAD
     title:"pdf-to-txt_gui";
     height:150px;
     width:300px;
 
     in-out property<string> url: "";
     in-out property<string> status:"";
-=======
-    height:100px;
-    width:200px;
-    // in-out property<int> counter: 42;
-    in-out property<string> url: "";
-    in-out property<string> status:"";
-    // callback request-increase-value();
->>>>>>> refs/remotes/origin/main
     callback submit-url(string);
     callback open-file();
 
     VerticalBox {
         //url from main.rs/rust
-<<<<<<< HEAD
         Text{text:"file \{root.url}";}
          status := Text{
             text:"Status: \{root.status}";
-=======
-        // Text{text:"Url from rust: \{root.url}";}
-        status := Text{
-            text:"\{root.status}";
->>>>>>> refs/remotes/origin/main
 
          }
         Button {
